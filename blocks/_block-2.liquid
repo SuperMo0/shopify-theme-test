@@ -1,0 +1,26 @@
+<div style="background-color:blue">{% content_for 'blocks' %}</div>
+
+{% schema %}
+{
+  "name": "block2",
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "settings": [],
+  "presets": [
+    {
+      "name": "square",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text_content": "CCC"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
