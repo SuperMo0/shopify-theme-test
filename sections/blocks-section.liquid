@@ -1,9 +1,4 @@
 <div>
-  <h1>First section of block1</h1>
-  <div class="flex">{% content_for 'block', id: 'block-1', type: '_block-1' %}</div>
-</div>
-
-<div>
   <h1>Second section of block2</h1>
   <div class="flex">{% content_for 'blocks' %}</div>
 </div>
@@ -13,6 +8,9 @@
   "blocks": [
     {
       "type": "_block-2"
+    },
+    {
+      "type": "_block-1"
     }
   ],
   "presets": [
