@@ -1,0 +1,19 @@
+<h1>this is a section than can have blocks other than AAA and BBB</h1>
+<div>
+  {% content_for 'blocks' %}
+</div>
+{% schema %}
+{
+  "name": "section",
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "my-section"
+    }
+  ]
+}
+{% endschema %}

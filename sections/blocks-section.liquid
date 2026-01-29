@@ -1,0 +1,22 @@
+<div>
+  <h1>Second section of block2</h1>
+  <div class="flex">{% content_for 'blocks' %}</div>
+</div>
+{% schema %}
+{
+  "name": "blocks-square",
+  "blocks": [
+    {
+      "type": "_block-2"
+    },
+    {
+      "type": "_block-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "blocks-section-default"
+    }
+  ]
+}
+{% endschema %}

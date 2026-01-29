@@ -1,0 +1,22 @@
+<p>
+  {{ block.settings.text_content }}
+</p>
+
+{% schema %}
+{
+  "name": "Text",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Text",
+      "id": "text_content",
+      "default": "This is a sample text. You can edit it to display your own content."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text Block"
+    }
+  ]
+}
+{% endschema %}
