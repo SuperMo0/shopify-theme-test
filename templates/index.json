@@ -81,32 +81,40 @@
       "name": "blocks-section-default",
       "settings": {}
     },
-    "176995947693aca046": {
+    "1769962212fb637473": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_336ad98_Y4WETa": {
-          "type": "ai_gen_block_336ad98",
+        "ai_gen_block_d12ad6c_QzdBzy": {
+          "type": "ai_gen_block_d12ad6c",
           "settings": {
-            "marquee_text": "Free Shipping on Orders Over $50 | New Arrivals Daily | Shop Now and Save 20%",
+            "text_1": "Free shipping on orders over $50",
+            "url_1": "shopify://products/athletic-cotton-tank-top",
+            "text_2": "New arrivals now available",
+            "url_2": "shopify://pages/contact",
+            "text_3": "Shop the latest collection",
+            "url_3": "shopify://policies/privacy-policy",
+            "text_4": "",
+            "url_4": "",
+            "text_5": "",
+            "url_5": "",
             "separator": "★",
+            "separator_spacing": 20,
+            "separator_color": "#ffffff",
             "scroll_speed": 30,
-            "pause_on_hover": "paused",
             "text_size": 16,
-            "text_weight": "500",
-            "text_transform": "uppercase",
-            "letter_spacing": 1,
-            "text_spacing": 40,
-            "separator_spacing": 30,
+            "text_weight": "400",
+            "item_spacing": 20,
             "vertical_padding": 15,
-            "background_color": "#121212",
+            "background_color": "#9ad922",
             "text_color": "#FFFFFF",
-            "separator_color": "#FFFFFF"
+            "hover_color": "#CCCCCC",
+            "hover_opacity": 80
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_336ad98_Y4WETa"
+        "ai_gen_block_d12ad6c_QzdBzy"
       ],
       "settings": {}
     }
@@ -115,6 +123,6 @@
     "image_banner",
     "featured_collection",
     "blocks_section_LNhFHf",
-    "176995947693aca046"
+    "1769962212fb637473"
   ]
 }
