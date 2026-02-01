@@ -81,11 +81,11 @@
       "name": "blocks-section-default",
       "settings": {}
     },
-    "blocks_bMA7Fm": {
+    "blocks_bMA7Fme": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_d12ad6c_g8z6eA": {
-          "type": "ai_gen_block_d12ad6c",
+        "marquee": {
+          "type": "marquee",
           "settings": {
             "text_1": "Free shipping on orders over $50",
             "url_1": "shopify://products/athletic-cotton-tank-top",
@@ -114,7 +114,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_d12ad6c_g8z6eA"
+        "marquee"
       ],
       "name": "Scrolling marquee banner",
       "settings": {}
