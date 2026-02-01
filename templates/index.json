@@ -80,11 +80,41 @@
       "type": "blocks-section",
       "name": "blocks-section-default",
       "settings": {}
+    },
+    "176995947693aca046": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_336ad98_Y4WETa": {
+          "type": "ai_gen_block_336ad98",
+          "settings": {
+            "marquee_text": "Free Shipping on Orders Over $50 | New Arrivals Daily | Shop Now and Save 20%",
+            "separator": "★",
+            "scroll_speed": 30,
+            "pause_on_hover": "paused",
+            "text_size": 16,
+            "text_weight": "500",
+            "text_transform": "uppercase",
+            "letter_spacing": 1,
+            "text_spacing": 40,
+            "separator_spacing": 30,
+            "vertical_padding": 15,
+            "background_color": "#121212",
+            "text_color": "#FFFFFF",
+            "separator_color": "#FFFFFF"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_336ad98_Y4WETa"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
-    "blocks_section_LNhFHf"
+    "blocks_section_LNhFHf",
+    "176995947693aca046"
   ]
 }
