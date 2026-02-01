@@ -80,11 +80,50 @@
       "type": "blocks-section",
       "name": "blocks-section-default",
       "settings": {}
+    },
+    "blocks_bMA7Fm": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d12ad6c_g8z6eA": {
+          "type": "ai_gen_block_d12ad6c",
+          "settings": {
+            "text_1": "Free shipping on orders over $50",
+            "url_1": "shopify://products/athletic-cotton-tank-top",
+            "text_2": "New arrivals now available",
+            "url_2": "shopify://collections/frontpage",
+            "text_3": "Shop the latest collection",
+            "url_3": "",
+            "text_4": "Limited time offer",
+            "url_4": "",
+            "text_5": "Subscribe for exclusive deals",
+            "url_5": "",
+            "separator": "•",
+            "separator_spacing": 20,
+            "separator_color": "#121212",
+            "scroll_speed": 30,
+            "text_size": 16,
+            "text_weight": "400",
+            "item_spacing": 20,
+            "vertical_padding": 15,
+            "background_color": "#121212",
+            "text_color": "#FFFFFF",
+            "hover_color": "#CCCCCC",
+            "hover_opacity": 80
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d12ad6c_g8z6eA"
+      ],
+      "name": "Scrolling marquee banner",
+      "settings": {}
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
-    "blocks_section_LNhFHf"
+    "blocks_section_LNhFHf",
+    "blocks_bMA7Fm"
   ]
 }

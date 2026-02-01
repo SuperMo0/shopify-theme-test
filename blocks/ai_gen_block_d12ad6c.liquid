@@ -1,0 +1,354 @@
+{% doc %}
+  @prompt
+    Create a smooth scrolling text marquee banner that continuously scrolls text from right to left. The marquee should support multiple text items, where each text item can be a clickable link that directs to any page. Include settings to customize the marquee text, link URLs, scrolling speed, text size, text color, background color, and link hover effects. The animation should be seamless with the text repeating continuously without gaps.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-marquee-container-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.vertical_padding }}px 0;
+  }
+
+  .ai-marquee-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    width: fit-content;
+    animation: ai-marquee-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;
+  }
+
+  .ai-marquee-content-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ai-marquee-item-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 {{ block.settings.item_spacing }}px;
+    font-size: {{ block.settings.text_size }}px;
+    font-weight: {{ block.settings.text_weight }};
+    color: {{ block.settings.text_color }};
+    text-decoration: none;
+    transition: color 0.3s ease, opacity 0.3s ease;
+  }
+
+  .ai-marquee-item-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.hover_color }};
+    opacity: {{ block.settings.hover_opacity | divided_by: 100.0 }};
+  }
+
+  .ai-marquee-separator-{{ ai_gen_id }} {
+    display: inline-block;
+    margin: 0 {{ block.settings.separator_spacing }}px;
+    color: {{ block.settings.separator_color }};
+    font-size: {{ block.settings.text_size }}px;
+  }
+
+  @keyframes ai-marquee-scroll-{{ ai_gen_id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-marquee-wrapper-{{ ai_gen_id }} {
+      animation-play-state: paused;
+    }
+  }
+{% endstyle %}
+
+<marquee-banner-{{ ai_gen_id }} class="ai-marquee-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-marquee-wrapper-{{ ai_gen_id }}">
+    <div class="ai-marquee-content-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% liquid
+          assign text_key = 'text_' | append: i
+          assign url_key = 'url_' | append: i
+          assign text_value = block.settings[text_key]
+          assign url_value = block.settings[url_key]
+        %}
+        
+        {% if text_value != blank %}
+          {% if url_value != blank %}
+            <a href="{{ url_value }}" class="ai-marquee-item-{{ ai_gen_id }}">
+              {{ text_value }}
+            </a>
+          {% else %}
+            <span class="ai-marquee-item-{{ ai_gen_id }}">
+              {{ text_value }}
+            </span>
+          {% endif %}
+          
+          {% if forloop.last == false %}
+            <span class="ai-marquee-separator-{{ ai_gen_id }}">{{ block.settings.separator }}</span>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="ai-marquee-content-{{ ai_gen_id }}" aria-hidden="true">
+      {% for i in (1..5) %}
+        {% liquid
+          assign text_key = 'text_' | append: i
+          assign url_key = 'url_' | append: i
+          assign text_value = block.settings[text_key]
+          assign url_value = block.settings[url_key]
+        %}
+        
+        {% if text_value != blank %}
+          {% if url_value != blank %}
+            <a href="{{ url_value }}" class="ai-marquee-item-{{ ai_gen_id }}" tabindex="-1">
+              {{ text_value }}
+            </a>
+          {% else %}
+            <span class="ai-marquee-item-{{ ai_gen_id }}">
+              {{ text_value }}
+            </span>
+          {% endif %}
+          
+          {% if forloop.last == false %}
+            <span class="ai-marquee-separator-{{ ai_gen_id }}">{{ block.settings.separator }}</span>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</marquee-banner-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class MarqueeBanner{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.setupMarquee();
+      }
+
+      setupMarquee() {
+        const wrapper = this.querySelector('.ai-marquee-wrapper-{{ ai_gen_id }}');
+        if (!wrapper) return;
+
+        const content = this.querySelector('.ai-marquee-content-{{ ai_gen_id }}');
+        if (!content) return;
+
+        const contentWidth = content.offsetWidth;
+        wrapper.style.width = (contentWidth * 2) + 'px';
+      }
+    }
+
+    customElements.define('marquee-banner-{{ ai_gen_id }}', MarqueeBanner{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Scrolling marquee banner",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Marquee items"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text 1",
+      "default": "Free shipping on orders over $50"
+    },
+    {
+      "type": "url",
+      "id": "url_1",
+      "label": "Link 1"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text 2",
+      "default": "New arrivals now available"
+    },
+    {
+      "type": "url",
+      "id": "url_2",
+      "label": "Link 2"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text 3",
+      "default": "Shop the latest collection"
+    },
+    {
+      "type": "url",
+      "id": "url_3",
+      "label": "Link 3"
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "Text 4",
+      "default": "Limited time offer"
+    },
+    {
+      "type": "url",
+      "id": "url_4",
+      "label": "Link 4"
+    },
+    {
+      "type": "text",
+      "id": "text_5",
+      "label": "Text 5",
+      "default": "Subscribe for exclusive deals"
+    },
+    {
+      "type": "url",
+      "id": "url_5",
+      "label": "Link 5"
+    },
+    {
+      "type": "header",
+      "content": "Separator"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator character",
+      "default": "•"
+    },
+    {
+      "type": "range",
+      "id": "separator_spacing",
+      "label": "Separator spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "s",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Text weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "label": "Item spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "Vertical padding",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover text",
+      "default": "#CCCCCC"
+    },
+    {
+      "type": "range",
+      "id": "hover_opacity",
+      "label": "Hover opacity",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling marquee banner"
+    }
+  ]
+}
+{% endschema %}
